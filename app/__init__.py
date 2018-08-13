@@ -1,8 +1,6 @@
 import os
 from flask import Flask
 from flask import jsonify
-from flask_restful import Api
-from flask_jwt_extended import JWTManager
 
 
 def create_app(test_config=None):
@@ -27,8 +25,7 @@ def create_app(test_config=None):
         context = {"status": 200, "message": "Welcome to ENOVA!!"}
         return jsonify(context)
 
-    from app.resource import api
-    from app.resource import jwt
+    from .resources import api, jwt
     jwt.init_app(app)
     api.init_app(app)
 
